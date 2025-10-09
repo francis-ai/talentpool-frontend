@@ -1,0 +1,240 @@
+@import "tailwindcss";
+@font-face {
+  font-family: 'FontOne';
+  /* You can name it whatever you want */
+  src: url('./assets/Font/Morelan.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.date{
+  position: relative;
+  top: 70px;
+}
+.Ytop{
+  position: relative;
+  top: 90px;
+}
+.Sidebarz{
+  position: relative;
+    top: 150px;
+}
+.Sidebarzer{
+  position: relative;
+    top: 10px;
+}
+.now{
+  position: relative;
+    top: 190px;
+}
+.manrir{
+  position: relative;
+  top: 50px; 
+}
+.CourHone{
+  position: relative;
+  top: 90px;                                                   
+}
+.nation{
+  position: relative;
+  top: 80px;
+}
+.Thremonth{
+  position: relative;
+    top: 150px;
+}
+@font-face {
+  font-family: 'FontTwo';
+  /* You can name it whatever you want */
+  src: url('./assets/Font/Ethnocentric\ Rg.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FontThree';
+  /* You can name it whatever you want */
+  src: url('./assets/Font/Ethnocentric\ Rg.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'fontFour';
+  /* You can name it whatever you want */
+  src: url('./assets/Font/AvarezoSerif_PERSONAL_USE_ONLY.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.now{
+  position: relative;
+  top: 80px;
+}
+
+
+.mowff{
+  position: relative;
+  top: 70px;
+}
+body {
+  font-family: 'CustomFont', sans-serif;
+}
+ .container {
+   position: relative;
+   width: 400px;
+   height: 400px;
+   margin: 100px auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ /* The spinning rope (SVG circle) */
+ .rope-icon-wrapper {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   animation: spin 20s linear infinite;
+ }
+
+ .rope-icon {
+   width: 100%;
+   height: 100%;
+   transform-origin: center;
+   color: red;
+ }
+
+ /* Keyframes to rotate the rope slowly */
+ @keyframes spin {
+   from {
+     transform: rotate(0deg);
+   }
+
+   to {
+     transform: rotate(360deg);
+   }
+ }
+
+ 
+ .circle-wrapper {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 2;
+   
+ }
+.moving-dash {
+
+  stroke-dasharray: 6, 10;
+
+  stroke-dashoffset: 0;
+
+  animation: dashAnimation 2s linear infinite;
+
+}
+
+
+
+@keyframes dashAnimation {
+
+  to {
+
+    stroke-dashoffset: -16;
+
+  }
+
+}
+.truurt{
+  position: relative;
+  top: 90px;
+}
+ .circle-text {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   gap: 25px;
+   transform-origin: center;
+ }
+
+ .circle-text div {
+   position: absolute;
+   width: 120px;
+   text-align: center;
+   font-size: 14px;
+   transform-origin: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .circle-text img {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   margin-right: 10px;
+ }
+
+ /* Placing content around the circle */
+ .circle-text div:nth-child(1) {
+   transform: rotate(0deg) translateX(150px) rotate(0deg);
+ }
+
+ .circle-text div:nth-child(2) {
+   transform: rotate(90deg) translateX(150px) rotate(-90deg);
+ }
+
+ .circle-text div:nth-child(3) {
+   transform: rotate(180deg) translateX(150px) rotate(-180deg);
+ }
+
+ .circle-text div:nth-child(4) {
+   transform: rotate(270deg) translateX(150px) rotate(-270deg);
+ }
+ @media (max-width: 640px) {
+   .container {
+     width: 300px;
+     height: 300px;
+   }
+
+   .circle-text div {
+     width: 110px;
+     font-size: 13px;
+   }
+
+   .circle-text img {
+     width: 35px;
+     height: 35px;
+     margin-right: 8px;
+   }
+
+   /* Adjust placement radius for slightly larger mobile circle */
+   .circle-text div:nth-child(1) {
+     transform: rotate(0deg) translateX(120px) rotate(0deg);
+   }
+
+   .circle-text div:nth-child(2) {
+     transform: rotate(90deg) translateX(120px) rotate(-90deg);
+   }
+
+   .circle-text div:nth-child(3) {
+     transform: rotate(180deg) translateX(120px) rotate(-180deg);
+   }
+
+   .circle-text div:nth-child(4) {
+     transform: rotate(270deg) translateX(120px) rotate(-270deg);
+   }
+ }
+ .bbb{
+  position: relative;
+  top: 70px;
+ }
+ .xxx{
+  
+      position: relative;
+      top: 70px;
+    }
+ 
