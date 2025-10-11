@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
-const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+import { AuthContext } from "../../context/AuthContext";
 
 export default function UpdatePassword() {
+  const { axiosInstance, isAuthenticated, loading: authLoading } =
+    useContext(AuthContext);
+
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
@@ -13,12 +14,24 @@ export default function UpdatePassword() {
 
   const [loading, setLoading] = useState(false);
 
+  // Handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (authLoading) {
+      toast.error("Please wait... authentication is still loading.");
+      return;
+    }
+
+    if (!isAuthenticated) {
+      toast.error("⚠️ You must be logged in to update your password.");
+      return;
+    }
 
     if (formData.newPassword !== formData.confirmPassword) {
       toast.error("❌ New password and confirmation do not match!");
@@ -27,29 +40,22 @@ export default function UpdatePassword() {
 
     try {
       setLoading(true);
+      const res = await axiosInstance.put("/update-password", {
+        currentPassword: formData.currentPassword,
+        newPassword: formData.newPassword,
+      });
 
-      // Get token from localStorage
-      const token = localStorage.getItem("token");
+      toast.success(res.data?.message || "✅ Password updated successfully!");
 
-      const res = await axios.put(
-        `${BASE_URL}/api/update-password`,
-        {
-          currentPassword: formData.currentPassword,
-          newPassword: formData.newPassword,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      toast.success(res.data.message || "✅ Password updated successfully");
-
-      setFormData({ currentPassword: "", newPassword: "", confirmPassword: "" });
+      setFormData({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
     } catch (err) {
       toast.error(
-        err.response?.data?.message || "❌ Failed to update password. Try again."
+        err.response?.data?.message ||
+          "❌ Failed to update password. Try again."
       );
     } finally {
       setLoading(false);
@@ -58,7 +64,6 @@ export default function UpdatePassword() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-blue-900 px-4 py-8">
-      {/* Toast container */}
       <Toaster position="top-right" reverseOrder={false} />
 
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-3xl">
@@ -80,15 +85,16 @@ export default function UpdatePassword() {
                 />
               </svg>
             </div>
-            <h2 className="text-3xl font-bold text-gray-800">Update Password</h2>
+            <h2 className="text-3xl font-bold text-gray-800">
+              Update Password
+            </h2>
             <p className="text-gray-600 mt-2">
               Secure your account with a new password
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Current Password */}
-            <div className="relative">
+            <div>
               <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
                 Current Password
               </label>
@@ -98,13 +104,13 @@ export default function UpdatePassword() {
                 value={formData.currentPassword}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-300 text-gray-800 placeholder-blue-200"
+                disabled={loading}
+                className="w-full px-4 py-3 bg-blue-50 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-300 text-gray-800 placeholder-blue-200 disabled:opacity-60"
                 placeholder="Enter current password"
               />
             </div>
 
-            {/* New Password */}
-            <div className="relative">
+            <div>
               <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
                 New Password
               </label>
@@ -114,13 +120,13 @@ export default function UpdatePassword() {
                 value={formData.newPassword}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-300 text-gray-800 placeholder-blue-200"
+                disabled={loading}
+                className="w-full px-4 py-3 bg-blue-50 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-300 text-gray-800 placeholder-blue-200 disabled:opacity-60"
                 placeholder="Enter new password"
               />
             </div>
 
-            {/* Confirm Password */}
-            <div className="relative">
+            <div>
               <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
                 Confirm Password
               </label>
@@ -130,22 +136,26 @@ export default function UpdatePassword() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-300 text-gray-800 placeholder-blue-200"
+                disabled={loading}
+                className="w-full px-4 py-3 bg-blue-50 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-300 text-gray-800 placeholder-blue-200 disabled:opacity-60"
                 placeholder="Confirm new password"
               />
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
-              disabled={loading}
-              className={`w-full py-3.5 bg-blue-900 text-white font-bold rounded-xl shadow-lg hover:bg-blue-800 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 ${
-                loading
-                  ? "opacity-80 cursor-not-allowed"
-                  : "hover:scale-[1.02] transform"
+              disabled={loading || authLoading}
+              className={`w-full py-3.5 bg-blue-900 text-white font-bold rounded-xl shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 ${
+                loading || authLoading
+                  ? "opacity-70 cursor-not-allowed"
+                  : "hover:bg-blue-800 hover:scale-[1.02] transform"
               }`}
             >
-              {loading ? "Updating..." : "Update Password"}
+              {loading
+                ? "Updating..."
+                : authLoading
+                ? "Loading User..."
+                : "Update Password"}
             </button>
           </form>
         </div>

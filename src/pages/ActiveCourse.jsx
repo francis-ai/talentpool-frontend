@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { FiBookOpen, FiDollarSign } from "react-icons/fi";
+import { FiBookOpen } from "react-icons/fi";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -83,7 +83,6 @@ export default function MyCourses() {
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">{course.title}</h2>
               <div className="flex items-center mb-4">
-                <FiDollarSign className="text-gray-500 mr-1" />
                 <span className="font-bold text-gray-900">₦{course.amount_paid.toLocaleString()} paid</span>
               </div>
               <button

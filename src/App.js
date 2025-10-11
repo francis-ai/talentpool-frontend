@@ -2,6 +2,7 @@ import './index.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import FloatingButton from "./components/FloatingButton"; // ⬅️ add this
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -41,19 +42,21 @@ import AdminApp from "./AdminApp";
 
 function Layout({ children }) {
   const location = useLocation();
-  
-  // Hide navbar for auth pages and all admin routes
+
   const hideNavbar = [
-    "/login", 
-    "/register", 
-    "/forgot-password", 
-    "/reset-password"
+    "/login",
+    "/register",
+    "/forgot-password",
+    "/reset-password",
   ].includes(location.pathname) || location.pathname.startsWith("/admin");
+
+  const hideFloating = hideNavbar; // same pages where navbar is hidden
 
   return (
     <>
       {!hideNavbar && <Navbar />}
       {children}
+      {!hideFloating && <FloatingButton />} {/* ⬅️ show only where allowed */}
     </>
   );
 }

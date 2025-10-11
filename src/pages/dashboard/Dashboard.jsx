@@ -177,8 +177,8 @@ const Dashboard = () => {
   return (
     <div className="bg-gray-50 min-h-screen pb-16 md:pb-0">
       {/* Header */}
-     <header className="bg-white shadow-sm p-4 sticky top-0 z-40 ">
-        <div className="flex items-center justify-between mt-20 lg:mt-2">
+     <header className="bg-white shadow-sm p-4 sticky top-12 z-40 ">
+        <div className="flex items-center justify-between lg:mt-2">
           <div className="flex items-center">
             <button 
               className="md:hidden p-3 mr-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -364,7 +364,7 @@ const Dashboard = () => {
       {/* Main Content */}
       <main className="p-4">
         {/* Welcome Section */}
-        <div className="mb-6">
+        <div className="mb-6 mt-10">
           <h2 className="text-2xl font-bold">Hi {name},</h2>
           <p className="text-gray-600 mt-1 mb-3">What will you learn today?</p>
           <Link

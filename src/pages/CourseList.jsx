@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { FiBookOpen, FiClock, FiDollarSign } from "react-icons/fi";
+import { FiBookOpen, FiClock } from "react-icons/fi";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -100,7 +100,6 @@ export default function CourseList() {
 
                 <div className="flex justify-between items-center mb-6">
                   <div className="flex items-center">
-                    <FiDollarSign className="text-gray-500 mr-1" />
                     <span className="font-bold text-gray-900">₦{course.price.toLocaleString()}</span>
                   </div>
                   <div className="flex items-center">
