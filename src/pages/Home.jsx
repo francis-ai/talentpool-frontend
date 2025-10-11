@@ -6,12 +6,19 @@ import UKEducationPage from "../components/CourseList";
 import SuccessStories from "../components/SuccessStories";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+
+// ====== Images ======
+import cooperateOne from "../assets/images/cooperateOne.jpg";
+import cooperateThree from "../assets/images/cooperateThree.jpeg";
+import cyberSecurityTwo from "../assets/images/cyberxecuritytwo.webp";
+import imageOfPeople from "../assets/images/ImageOfpeople.jpg";
+import fullstackdev from "../assets/images/fullstackdev.jpg";
+import mobileEngineer from "../assets/images/mobileEnginere.jpeg";
+import databaseAdmin from "../assets/images/DatabaseAdmin.jpeg";
+import dataAnalysis from "../assets/images/Data-analysis-career-in-abuja-nigeria.jpg";
+
 export default function HomePage() {
-  const avatars = [
-    "/cooperateOne.jpg",
-    "/cooperateThree.jpeg",
-    "/cyberxecuritytwo.webp",
-  ];
+  const avatars = [cooperateOne, cooperateThree, cyberSecurityTwo];
 
   return (
     <>
@@ -20,7 +27,7 @@ export default function HomePage() {
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center opacity-15"
-          style={{ backgroundImage: "url('/ImageOfpeople.jpg')" }}
+          style={{ backgroundImage: `url(${imageOfPeople})` }}
         ></div>
 
         {/* Pattern Overlay */}
@@ -57,9 +64,7 @@ export default function HomePage() {
                     src={avatar}
                     alt={`Talent ${index + 1}`}
                     onError={(e) => {
-                      e.target.src = `https://i.pravatar.cc/150?img=${
-                        index + 5
-                      }`;
+                      e.target.src = `https://i.pravatar.cc/150?img=${index + 5}`;
                     }}
                   />
                 ))}
@@ -67,23 +72,23 @@ export default function HomePage() {
               <div className="ml-4 flex items-center text-sm text-gray-800 font-medium bg-orange-50 py-1 px-3 rounded-full">
                 <FaFire className="text-orange-500 mr-1" />
                 <span className="hidden sm:inline ml-1">Hot talents </span>
-                 ready to work
+                ready to work
               </div>
             </div>
           </div>
 
           {/* Buttons */}
           <div className="mt-10 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5">
-          <Link to="/talents">
-            <button className="group bg-blue-800 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center">
-              <span>Join as Talent</span>
-              <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
-            </button>
+            <Link to="/talents">
+              <button className="group bg-blue-800 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center">
+                <span>Join as Talent</span>
+                <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+              </button>
             </Link>
-          <Link to="/internship">
-            <button className="group border-2 border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300">
-              Hire Talent
-            </button>
+            <Link to="/internship">
+              <button className="group border-2 border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300">
+                Hire Talent
+              </button>
             </Link>
           </div>
         </div>
@@ -134,7 +139,7 @@ export default function HomePage() {
               Full Stack Development
             </p>
             <img
-              src="fullstackdev.jpg"
+              src={fullstackdev}
               alt="Software Dev"
               className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-blue-400 mx-auto"
             />
@@ -149,7 +154,7 @@ export default function HomePage() {
               Mobile Engineer
             </p>
             <img
-              src="mobileEnginere.jpeg"
+              src={mobileEngineer}
               alt="Mobile Engineer"
               className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-yellow-400 mx-auto"
             />
@@ -162,7 +167,7 @@ export default function HomePage() {
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center flex flex-col items-center">
             <p className="font-semibold text-sm md:text-base mb-2">SQL</p>
             <img
-              src="DatabaseAdmin.jpeg"
+              src={databaseAdmin}
               alt="Database SQL"
               className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-pink-500 mx-auto"
             />
@@ -177,7 +182,7 @@ export default function HomePage() {
               Data Analysis
             </p>
             <img
-              src="Data-analysis-career-in-abuja-nigeria.jpg"
+              src={dataAnalysis}
               alt="Data Analysis"
               className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-green-500 mx-auto"
             />
@@ -192,8 +197,7 @@ export default function HomePage() {
       <div className="mt-12 px-4 md:px-12">
         <UKEducationPage />
       </div>
-      <SuccessStories/>
-
+      <SuccessStories />
       <Footer />
     </>
   );

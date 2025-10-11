@@ -89,8 +89,8 @@ const App = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-sm text-gray-500 font-semibold">E-mail</span>
-                  <a href="mailto:talentpool09.com@gmail.com" className="text-gray-800 text-base font-medium break-words">
-                    talentpool09.com@gmail.com
+                  <a href="mailto:contact@talentpool.com.ng" className="text-gray-800 text-base font-medium break-words">
+                    contact@talentpool.com.ng
                   </a>
                 </div>
               </div>
@@ -101,8 +101,8 @@ const App = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-sm text-gray-500 font-semibold">Phone number</span>
-                  <a href="tel:+1234567890" className="text-gray-800 text-base font-medium">
-                    +1 (234) 567-8900
+                  <a href="tel:+2347037215168" className="text-gray-800 text-base font-medium">
+                    +234 703 721 5168 or +234 916 674 4744
                   </a>
                 </div>
               </div>

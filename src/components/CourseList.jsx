@@ -48,11 +48,7 @@ const UKEducationPage = () => {
                 {course.image && (
                   <div className="h-48 md:h-52 overflow-hidden relative">
                     <img
-                      src={
-                        course.image.startsWith("http")
-                          ? course.image // external link
-                          : `/${course.image}` // local image in public/images
-                      }
+                      src={course.image} // ✅ direct reference to imported image
                       alt={course.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />

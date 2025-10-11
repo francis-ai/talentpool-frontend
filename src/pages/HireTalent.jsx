@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Registration from "../components/HireTalent";
+import WorkImage from "../assets/images/Worknnn.jpg";
+
 
 // ✅ Enhanced Animated Counter Component
 const AnimatedCounter = ({ target, duration = 2000 }) => {
@@ -55,10 +57,11 @@ export default function RegistrationForm() {
       {/* 🌟 Enhanced Hero Section */}
       <section
         style={{
-          backgroundImage: "url('/Worknnn.jpg')",
+          backgroundImage: `url(${WorkImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
+
         className="relative flex flex-col items-center px-6 py-16 md:py-20"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-white/95 to-white/90 backdrop-blur-xs"></div>

@@ -470,7 +470,11 @@ const Dashboard = () => {
               
               <div className="space-y-4">
                 {topCourses.map(course => (
-                  <div key={course.id} className="bg-white rounded-xl overflow-hidden shadow-sm">
+                  <Link 
+                    key={course.id} 
+                    to="/course-list"
+                    className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
+                  >
                     <div className="flex">
                       <img 
                         src={course.image} 
@@ -478,7 +482,7 @@ const Dashboard = () => {
                         className="w-24 h-24 object-cover"
                       />
                       <div className="p-3 flex-1">
-                        <h4 className="font-medium text-sm">{course.title}</h4>
+                        <h4 className="font-medium text-sm text-gray-900">{course.title}</h4>
                         <p className="text-xs text-gray-500 mt-1">{course.instructor}</p>
                         
                         <div className="flex items-center mt-2">
@@ -496,7 +500,7 @@ const Dashboard = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

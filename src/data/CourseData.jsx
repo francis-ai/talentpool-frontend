@@ -1,4 +1,11 @@
 // src/data/coursesData.js
+import Image1 from "../assets/images/DataAnayst2.webp";
+import Image2 from "../assets/images/images (ai).jpeg";
+import Image3 from "../assets/images/CodingFront.jpg";
+import Image4 from "../assets/images/cyberxecurityImage.jpeg";
+import Image5 from "../assets/images/uxesigner.jpg";
+import Image6 from "../assets/images/GoogleCloud.jpeg";
+
 const CoursesData = [
   {
     id: "data-science",
@@ -23,7 +30,7 @@ What sets this program apart is its international certification, guaranteed inte
     location: "Ikeja, Lagos (with online options available)",
     tuition: "₦400,000 (Installment payment available)",
     duration: "6 months",
-    image:"DataAnayst2.webp"
+    image: Image1,
   },
   {
     id: "artificial-intelligence",
@@ -46,7 +53,7 @@ Through mentorship, internship placement, and international certification, this 
     location: "Ikeja, Lagos (with online learning options)",
     tuition: "₦450,000 (Installments available)",
     duration: "7 months",
-    image:"images (ai).jpeg"
+    image: Image2,
   },
   {
     id: "web-development",
@@ -69,7 +76,7 @@ You’ll work on live projects, build a professional portfolio, and earn interna
     location: "Ikeja, Lagos & Remote",
     tuition: "₦350,000 (Installment options available)",
     duration: "6 months",
-    image:"CodingFront.jpg"
+    image: Image3,
   },
   {
     id: "cybersecurity",
@@ -90,7 +97,7 @@ From penetration testing to network security and ethical hacking, you’ll gradu
     location: "Ikeja, Lagos (with hybrid classes)",
     tuition: "₦500,000 (Installment plans available)",
     duration: "8 months",
-    image:"cyberxecurityImage.jpeg"
+    image: Image4,
   },
   {
     id: "product-design",
@@ -111,7 +118,7 @@ You’ll learn the design thinking process, user research, wireframing, prototyp
     location: "Ikeja, Lagos / Remote",
     tuition: "₦300,000 (Installments allowed)",
     duration: "5 months",
-    image:"uxesigner.jpg"
+    image: Image5,
   },
   {
     id: "cloud-computing",
@@ -132,7 +139,7 @@ By the end, you’ll be equipped to manage scalable infrastructures and become a
     location: "Lagos & Online",
     tuition: "₦480,000 (Installments possible)",
     duration: "7 months",
-    image:"GoogleCloud.jpeg"
+    image: Image6,
   },
 ];
 

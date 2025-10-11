@@ -8,38 +8,49 @@ import {
 } from "react-icons/fa";
 import { motion, useAnimation } from "framer-motion";
 
+// ✅ Import images from /assets/images
+import ToluJohnson from "../assets/images/360_F_124848388_cjx0VIF3BdR6yveB7ZguDSlEpM91tbrM.jpg";
+import AdeniranWilfred from "../assets/images/badguy.jpg";
+import MaryObodo from "../assets/images/360_F_1142100802_6S1ANg4385vjRFKQ6q41DxOBwayLITXB.jpg";
+import JamesWilson from "../assets/images/images (9).jpeg";
+import OgunwaleSharma from "../assets/images/olawalepeters.jpg";
+
 const SuccessStories = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   const controls = useAnimation();
 
   // ✅ useMemo to avoid re-creation every render
-  const stats = useMemo(() => [
-    {
-      number: 40000,
-      label: "Graduates",
-      icon: <FaGraduationCap className="text-2xl sm:text-3xl" />,
-    },
-    {
-      number: 100000,
-      label: "2026 Milestone",
-      icon: <FaChartLine className="text-2xl sm:text-3xl" />,
-    },
-    {
-      number: 50,
-      label: "Partner Companies",
-      icon: <FaBuilding className="text-2xl sm:text-3xl" />,
-    },
-  ], []);
+  const stats = useMemo(
+    () => [
+      {
+        number: 40000,
+        label: "Graduates",
+        icon: <FaGraduationCap className="text-2xl sm:text-3xl" />,
+      },
+      {
+        number: 100000,
+        label: "2026 Milestone",
+        icon: <FaChartLine className="text-2xl sm:text-3xl" />,
+      },
+      {
+        number: 50,
+        label: "Partner Companies",
+        icon: <FaBuilding className="text-2xl sm:text-3xl" />,
+      },
+    ],
+    []
+  );
 
   const [animatedNumbers, setAnimatedNumbers] = useState([0, 0, 0]);
 
+  // ✅ Updated to use imported images
   const successStories = [
     {
       id: 1,
       name: "Tolu Johnson",
       role: "Data Scientist at TechCorp",
-      image: "360_F_124848388_cjx0VIF3BdR6yveB7ZguDSlEpM91tbrM.jpg",
+      image: ToluJohnson,
       story:
         "The Data Science program completely transformed my career. Within 3 months of completing the course, I landed my dream job with a 60% salary increase.",
       course: "Data Science",
@@ -49,7 +60,7 @@ const SuccessStories = () => {
       id: 2,
       name: "Adeniran Wilfred",
       role: "Full Stack Developer at ThofinApp",
-      image: "badguy.jpg",
+      image: AdeniranWilfred,
       story:
         "As a career switcher, I was nervous about breaking into tech. The Full Stack Development course gave me the practical skills and portfolio I needed to get hired.",
       course: "Full Stack Development",
@@ -57,9 +68,9 @@ const SuccessStories = () => {
     },
     {
       id: 3,
-      name: "Mary  Obodo",
+      name: "Mary Obodo",
       role: "UX Lead at DesignStudio",
-      image: "360_F_1142100802_6S1ANg4385vjRFKQ6q41DxOBwayLITXB.jpg",
+      image: MaryObodo,
       story:
         "The UI/UX Design course exceeded my expectations. The mentorship program connected me with industry professionals who helped me build an outstanding portfolio.",
       course: "UI/UX Design",
@@ -69,7 +80,7 @@ const SuccessStories = () => {
       id: 4,
       name: "James Wilson",
       role: "Cloud Architect at Edmoss global ventures",
-      image: "images (9).jpeg",
+      image: JamesWilson,
       story:
         "The Cloud Computing certification opened doors I didn't know existed. I now lead a team of engineers and manage infrastructure for Fortune 500 companies.",
       course: "Cloud Computing",
@@ -79,7 +90,7 @@ const SuccessStories = () => {
       id: 5,
       name: "Ogunwale Sharma",
       role: "Mobile Development Lead at ApparchInnovate",
-      image: "olawalepeters.jpg",
+      image: OgunwaleSharma,
       story:
         "The Mobile Application Development course provided hands-on experience with real projects. I published my first app within weeks of completing the program.",
       course: "Mobile Application Development",
@@ -89,7 +100,7 @@ const SuccessStories = () => {
 
   // Intersection Observer
   useEffect(() => {
-    const currentSection = sectionRef.current; // ✅ copy ref to local variable
+    const currentSection = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -101,10 +112,7 @@ const SuccessStories = () => {
     );
 
     if (currentSection) observer.observe(currentSection);
-
-    return () => {
-      if (currentSection) observer.unobserve(currentSection); // ✅ cleanup safely
-    };
+    return () => currentSection && observer.unobserve(currentSection);
   }, [controls]);
 
   // Animate numbers
@@ -140,7 +148,7 @@ const SuccessStories = () => {
 
       return () => animations.forEach((timer) => clearInterval(timer));
     }
-  }, [isVisible, stats]); // ✅ include stats in dependency
+  }, [isVisible, stats]);
 
   const formatNumber = (num) =>
     num >= 1000 ? num.toLocaleString() + "+" : num + "+";
