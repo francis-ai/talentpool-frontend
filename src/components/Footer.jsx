@@ -7,10 +7,10 @@ import {
   FaBriefcase, 
   FaUserTie,
   FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
+  FaWhatsapp,
   FaInstagram
 } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -29,16 +29,16 @@ const Footer = () => {
               of technology and innovation together.
             </p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="bg-blue-800 p-3 rounded-full hover:bg-blue-700 transition-colors">
+              <a href="https://www.facebook.com/talentpoolafricahq" target="_blank" rel="noopener noreferrer" className="bg-blue-800 p-3 rounded-full hover:bg-blue-700 transition-colors">
                 <FaFacebookF className="text-sm" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="bg-blue-800 p-3 rounded-full hover:bg-blue-700 transition-colors">
-                <FaTwitter className="text-sm" />
+              <a href="https://wa.me/2347067870861" target="_blank" rel="noopener noreferrer" className="bg-blue-800 p-3 rounded-full hover:bg-blue-700 transition-colors">
+                <FaWhatsapp className="text-sm" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="bg-blue-800 p-3 rounded-full hover:bg-blue-700 transition-colors">
-                <FaLinkedinIn className="text-sm" />
+              <a href="https://www.tiktok.com/@talentpoolafrica?_t=ZS-90W8nXulvrb&_r=1" target="_blank" rel="noopener noreferrer" className="bg-blue-800 p-3 rounded-full hover:bg-blue-700 transition-colors">
+                <FaTiktok className="text-sm" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-blue-800 p-3 rounded-full hover:bg-blue-700 transition-colors">
+              <a href="https://www.instagram.com/talentpoolafrica?igsh=aDFzbGU2N3AzOHp6" target="_blank" rel="noopener noreferrer" className="bg-blue-800 p-3 rounded-full hover:bg-blue-700 transition-colors">
                 <FaInstagram className="text-sm" />
               </a>
             </div>

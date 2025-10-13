@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa6";
 
+
 const socialLinks = [
   {
     name: "Facebook",
@@ -18,13 +19,13 @@ const socialLinks = [
   {
     name: "TikTok",
     icon: <FaTiktok />,
-    url: "https://www.tiktok.com/@talentpoolafrica?_t=ZS-90W8nXulvrb&_r=1", // replace with your actual TikTok handle
+    url: "https://www.tiktok.com/@talentpoolafrica?_t=ZS-90W8nXulvrb&_r=1",
     color: "bg-black",
   },
   {
     name: "WhatsApp",
     icon: <FaWhatsapp />,
-    url: "https://wa.me/2347067870861", // your WhatsApp link
+    url: "https://wa.me/2347067870861",
     color: "bg-green-500",
   },
 ];
@@ -32,7 +33,7 @@ const socialLinks = [
 const FloatingSocialButtons = ({ position = "left" }) => {
   return (
     <div
-      className={`fixed top-1/3 z-50 flex flex-col ${
+      className={`hidden md:flex fixed top-1/3 z-50 flex-col ${
         position === "left" ? "left-0" : "right-0"
       }`}
     >

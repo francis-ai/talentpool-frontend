@@ -5,7 +5,7 @@ import Homeafeatured from "../components/Fatured";
 import UKEducationPage from "../components/CourseList";
 import SuccessStories from "../components/SuccessStories";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // ====== Images ======
 import cooperateOne from "../assets/images/cooperateOne.jpg";
@@ -18,6 +18,7 @@ import databaseAdmin from "../assets/images/DatabaseAdmin.jpeg";
 import dataAnalysis from "../assets/images/Data-analysis-career-in-abuja-nigeria.jpg";
 
 export default function HomePage() {
+  const navigate = useNavigate();
   const avatars = [cooperateOne, cooperateThree, cyberSecurityTwo];
 
   return (
@@ -94,7 +95,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Circular Skills Section */}
+       {/* Circular Skills Section */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -134,14 +135,17 @@ export default function HomePage() {
 
         <div className="relative w-[80%] h-[80%] md:w-[480px] md:h-[480px] max-w-[480px] max-h-[480px]">
           {/* Top - Fullstack */}
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 text-center flex flex-col items-center">
-            <p className="font-semibold text-sm md:text-base mb-2">
+          <div
+            onClick={() => navigate("/course-list")}
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 text-center flex flex-col items-center cursor-pointer group"
+          >
+            <p className="font-semibold text-sm md:text-base mb-2 group-hover:text-blue-600 transition-colors">
               Full Stack Development
             </p>
             <img
               src={fullstackdev}
               alt="Software Dev"
-              className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-blue-400 mx-auto"
+              className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-blue-400 mx-auto transition-transform group-hover:scale-110"
             />
             <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-xs md:text-sm mt-2">
               NodeJS
@@ -149,14 +153,17 @@ export default function HomePage() {
           </div>
 
           {/* Right - Mobile */}
-          <div className="absolute top-1/2 right-0 transform translate-x-[calc(50%-0.8rem)] -translate-y-1/2 text-center flex flex-col items-center">
-            <p className="font-semibold text-sm md:text-base mb-2 mr-8">
+          <div
+            onClick={() => navigate("/course-list")}
+            className="absolute top-1/2 right-0 transform translate-x-[calc(50%-0.8rem)] -translate-y-1/2 text-center flex flex-col items-center cursor-pointer group"
+          >
+            <p className="font-semibold text-sm md:text-base mb-2 mr-8 group-hover:text-yellow-600 transition-colors">
               Mobile Engineer
             </p>
             <img
               src={mobileEngineer}
               alt="Mobile Engineer"
-              className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-yellow-400 mx-auto"
+              className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-yellow-400 mx-auto transition-transform group-hover:scale-110"
             />
             <span className="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full text-xs md:text-sm mt-2">
               Flutter
@@ -164,12 +171,17 @@ export default function HomePage() {
           </div>
 
           {/* Bottom - SQL */}
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center flex flex-col items-center">
-            <p className="font-semibold text-sm md:text-base mb-2">SQL</p>
+          <div
+            onClick={() => navigate("/course-list")}
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center flex flex-col items-center cursor-pointer group"
+          >
+            <p className="font-semibold text-sm md:text-base mb-2 group-hover:text-pink-600 transition-colors">
+              SQL
+            </p>
             <img
               src={databaseAdmin}
               alt="Database SQL"
-              className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-pink-500 mx-auto"
+              className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-pink-500 mx-auto transition-transform group-hover:scale-110"
             />
             <span className="bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full text-xs md:text-sm mt-2">
               Database SQL
@@ -177,14 +189,17 @@ export default function HomePage() {
           </div>
 
           {/* Left - Data Analysis */}
-          <div className="absolute top-1/2 left-0 transform -translate-x-[calc(50%-0.8rem)] -translate-y-1/2 text-center flex flex-col items-center">
-            <p className="font-semibold text-sm md:text-base mb-2">
+          <div
+            onClick={() => navigate("/course-list")}
+            className="absolute top-1/2 left-0 transform -translate-x-[calc(50%-0.8rem)] -translate-y-1/2 text-center flex flex-col items-center cursor-pointer group"
+          >
+            <p className="font-semibold text-sm md:text-base mb-2 group-hover:text-green-600 transition-colors">
               Data Analysis
             </p>
             <img
               src={dataAnalysis}
               alt="Data Analysis"
-              className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-green-500 mx-auto"
+              className="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-green-500 mx-auto transition-transform group-hover:scale-110"
             />
             <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs md:text-sm mt-2">
               Python

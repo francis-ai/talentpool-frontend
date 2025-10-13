@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
   FaClock,
@@ -11,9 +11,11 @@ import {
   FaCertificate,
 } from "react-icons/fa";
 import CoursesData from "../data/CourseData";
+import { AuthContext } from "../context/AuthContext";
 
 const CourseDetail = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
   const course = CoursesData.find((c) => c.id === id);
 
   if (!course) {
@@ -166,8 +168,11 @@ const CourseDetail = () => {
                     </div>
 
                     <button className="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold mt-6 hover:bg-blue-800 transition-all">
-                      <Link to="/register">Enroll Now</Link>
+                      <Link to={user ? "/course-list" : "/login"}>
+                        Enroll Now
+                      </Link>
                     </button>
+
 
                     <div className="mt-4 text-center">
                       <p className="text-sm text-gray-600">
