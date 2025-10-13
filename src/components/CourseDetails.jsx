@@ -166,7 +166,7 @@ const CourseDetail = () => {
                     </div>
 
                     <button className="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold mt-6 hover:bg-blue-800 transition-all">
-                      <Link to="/Reg">Enroll Now</Link>
+                      <Link to="/register">Enroll Now</Link>
                     </button>
 
                     <div className="mt-4 text-center">
@@ -174,6 +174,7 @@ const CourseDetail = () => {
                         30-day money-back guarantee
                       </p>
                     </div>
+                    
 
                     <Link
                       to="/"

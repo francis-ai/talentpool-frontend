@@ -15,7 +15,7 @@ export default function CourseList() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isHalfPayment, setIsHalfPayment] = useState(false);
 
-  // Fetch courses for logged-in user
+  // 🧩 Fetch courses for logged-in user
   useEffect(() => {
     if (!user) return;
     const fetchCourses = async () => {
@@ -32,14 +32,14 @@ export default function CourseList() {
     fetchCourses();
   }, [axiosInstance, user, navigate]);
 
-  // Start payment
+  // 🧭 Payment button click
   const handleBuyClick = (course, half = false) => {
     setSelectedCourse(course);
     setIsHalfPayment(half);
     setShowModal(true);
   };
 
-  // Confirm and redirect to Paystack
+  // 🧾 Confirm and redirect to Paystack
   const confirmPayment = async () => {
     if (!selectedCourse) return;
     try {
@@ -56,13 +56,13 @@ export default function CourseList() {
     }
   };
 
-  // ⏳ Helper: calculate days left until next payment due
-  const getDaysLeft = (nextPaymentDue) => {
-    if (!nextPaymentDue) return 0;
+  // 🕒 Calculate days left until next payment
+  const getDaysLeft = (countdownDate) => {
+    if (!countdownDate) return 0;
     const now = new Date();
-    const dueDate = new Date(nextPaymentDue);
+    const dueDate = new Date(countdownDate);
     const diffTime = dueDate - now;
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // days left
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
 
   if (!user || loading) {
@@ -88,19 +88,15 @@ export default function CourseList() {
         {/* ==== Course Cards ==== */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map((course) => {
-            const daysLeft = getDaysLeft(course.next_payment_due);
-            const isHalfPaid =
-              course.amount_paid > 0 && course.amount_paid < course.price;
-            const canContinue =
-              course.purchased || (isHalfPaid && daysLeft > 0);
-            const canPayRemaining =
-              isHalfPaid && (!course.next_payment_due || daysLeft <= 0);
+            const daysLeft = getDaysLeft(course.countdown);
+            const status = course.paymentStatus; // comes directly from backend
 
             return (
               <div
                 key={course.id}
-                className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
+                className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 relative"
               >
+                {/* ===== Course Image ===== */}
                 <div className="h-48 bg-gray-100 flex items-center justify-center relative">
                   {course.image_url ? (
                     <img
@@ -112,16 +108,22 @@ export default function CourseList() {
                     <FiBookOpen className="text-gray-300 text-5xl" />
                   )}
 
-                  {/* Enrolled badge */}
-                  {canContinue && (
-                    <div className="absolute top-4 right-4">
+                  {/* ===== BADGES ===== */}
+                  <div className="absolute top-4 right-4">
+                    {status === "fully_paid" && (
                       <span className="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full flex items-center shadow-sm">
                         <BsCheckCircleFill className="mr-1 text-xs" /> Enrolled
                       </span>
-                    </div>
-                  )}
+                    )}
+                    {status === "half_paid" && (
+                      <span className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full flex items-center shadow-sm">
+                        <BsCheckCircleFill className="mr-1 text-xs" /> Half Paid
+                      </span>
+                    )}
+                  </div>
                 </div>
 
+                {/* ===== Course Details ===== */}
                 <div className="p-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
                     {course.title}
@@ -133,7 +135,7 @@ export default function CourseList() {
                   <div className="flex justify-between items-center mb-6">
                     <div className="flex items-center">
                       <span className="font-bold text-gray-900">
-                        ₦{course.price.toLocaleString()}
+                        ₦{course.price?.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex items-center">
@@ -144,72 +146,52 @@ export default function CourseList() {
                     </div>
                   </div>
 
-                  {/* ==== PAYMENT STATES ==== */}
-                  {(() => {
-                    if (canContinue) {
-                      return (
-                        <div className="flex flex-col items-center">
-                          <button
-                            onClick={() => navigate(`/course-list/${course.id}`)}
-                            className="w-full bg-white border border-blue-700 text-blue-700 hover:bg-blue-50 py-3 rounded-md text-sm font-medium"
-                          >
-                            Continue Learning
-                          </button>
-                          {isHalfPaid && daysLeft > 0 && (
-                            <p className="text-xs text-yellow-600 mt-2 font-medium">
-                              Half Payment – {daysLeft} day
-                              {daysLeft > 1 ? "s" : ""} left
-                            </p>
-                          )}
+                  {/* ===== PAYMENT ACTIONS ===== */}
+                  {status === "fully_paid" && (
+                    <button
+                      onClick={() => navigate(`/course-list/${course.id}`)}
+                      className="w-full bg-white border border-blue-700 text-blue-700 hover:bg-blue-50 py-3 rounded-md text-sm font-medium"
+                    >
+                      Continue Learning
+                    </button>
+                  )}
+
+                  {status === "half_paid" && (
+                    <div className="flex flex-col items-center">
+                      <button
+                        onClick={() => navigate(`/course-list/${course.id}`)}
+                        className="w-full bg-white border border-yellow-500 text-yellow-600 hover:bg-yellow-50 py-3 rounded-md text-sm font-medium"
+                      >
+                        Access Course
+                      </button>
+                      {daysLeft > 0 ? (
+                        <div className="mt-3 px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-medium rounded-full border border-yellow-200">
+                          {daysLeft} day{daysLeft > 1 ? "s" : ""} left to complete payment
                         </div>
-                      );
-                    }
-
-                    if (canPayRemaining) {
-                      return (
-                        <button
-                          onClick={() => handleBuyClick(course, false)}
-                          className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-md text-sm font-medium"
-                        >
-                          Pay Remaining Balance
-                        </button>
-                      );
-                    }
-
-                    if (isHalfPaid && daysLeft <= 0) {
-                      return (
-                        <div className="flex flex-col items-center">
-                          <button
-                            disabled
-                            className="w-full bg-gray-300 text-gray-600 py-3 rounded-md text-sm font-medium cursor-not-allowed"
-                          >
-                            Access Expired
-                          </button>
-                          <p className="text-xs text-gray-500 mt-2">
-                            Please complete your payment to continue
-                          </p>
+                      ) : (
+                        <div className="mt-3 text-xs text-red-600">
+                          Access expired — complete payment
                         </div>
-                      );
-                    }
+                      )}
+                    </div>
+                  )}
 
-                    // Default state — not enrolled
-                    return (
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => handleBuyClick(course, false)}
-                          className="flex-1 bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-md text-sm font-medium"
-                        >
-                          Pay Full
-                        </button>
-                        <button
-                          onClick={() => handleBuyClick(course, true)}
-                          className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded-md text-sm font-medium"
-                        >
-                          Pay Half
-                        </button>
-                      </div>
-                    );
-                  })()}
+                  {status === "not_enrolled" && (
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleBuyClick(course, false)}
+                        className="flex-1 bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-md text-sm font-medium"
+                      >
+                        Pay Full
+                      </button>
+                      <button
+                        onClick={() => handleBuyClick(course, true)}
+                        className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded-md text-sm font-medium"
+                      >
+                        Pay Half
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             );

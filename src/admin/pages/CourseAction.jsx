@@ -2,9 +2,12 @@ import React, { useEffect, useState, useContext, useCallback } from "react";
 import { AuthContext } from "../../context/AuthContext"; // Adjust path as needed
 import { FiEdit2, FiTrash2, FiPlus, FiLoader, FiAlertCircle, FiCheck } from "react-icons/fi";
 import { Link } from "react-router-dom";
+
+
 export default function CoursesPage() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  // const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [modal, setModal] = useState({ 
@@ -285,7 +288,7 @@ export default function CoursesPage() {
               {courses.length} {courses.length === 1 ? "course" : "courses"} available
             </p>
           </div>
-          <Link to="/admin-create-course"
+          <Link to="/admin/admin-create-course"
             
             className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-md"
           >
@@ -344,10 +347,16 @@ export default function CoursesPage() {
                     {course.description}
                   </p>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-gray-500">
+                    {/* <span className="text-xs text-gray-500">
                       Updated: {new Date(course.updated_at).toLocaleDateString()}
-                    </span>
+                    </span> */}
                     <div className="flex space-x-2">
+                      {/* <button
+                        onClick={() => navigate(`/admin/course-syllabus/${course.id}`)}
+                        className="flex items-center px-3 py-1.5 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition"
+                      >
+                        Add Course Content
+                      </button> */}
                       <button
                         onClick={() => showModal('edit', 'Edit Course', 'Update the course details:', course)}
                         disabled={isProcessing}

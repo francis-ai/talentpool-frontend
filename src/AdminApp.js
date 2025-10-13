@@ -16,6 +16,7 @@ import TransactionHistory from "./admin/pages/TransactionHistory";
 import LessonPage from "./admin/pages/LessonPage";
 import AllRegistered from "./admin/pages/AllRegistered";
 import Subscription from "./admin/pages/Subscription";
+import CourseSyllabus from "./admin/pages/CourseSyllabus";
 
 const AdminApp = () => {
   return (
@@ -35,6 +36,7 @@ const AdminApp = () => {
         <Route path="transaction-history" element={<TransactionHistory />} />
         <Route path="all-registered" element={<AllRegistered />} />
         <Route path="subscription" element={<Subscription />} />
+        <Route path="course-syllabus/:courseId" element={<CourseSyllabus />} />
       </Routes>
     </AdminLayout>
   );
