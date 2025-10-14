@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaSearch, FaStar, FaCheck, FaLaptopCode, FaPalette, FaChartBar, FaBullhorn, FaUser } from 'react-icons/fa';
 import Formeronetalentpool from '../components/TalentForm';
 import Footer from '../components/Footer';
+import Image from '../assets/images/Gemini_Generated_Image_5kqw6q5kqw6q5kqw.png'
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Web Development');
@@ -68,7 +69,7 @@ const App = () => {
           <div className="w-full  lg:w-1/2 flex justify-center relative mt-9 lg:mt-0">
             {/* Main Cartoon Image */}
             <img 
-              src="Gemini_Generated_Image_5kqw6q5kqw6q5kqw.png" 
+              src={Image} 
               alt="Hero Cartoon" 
               className="w-96 lg:w-full max-w-md relative z-10 mt-10 rounded-xl"
             />

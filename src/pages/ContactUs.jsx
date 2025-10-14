@@ -90,7 +90,7 @@ const App = () => {
                 <div className="flex flex-col">
                   <span className="text-sm text-gray-500 font-semibold">E-mail</span>
                   <a href="mailto:contact@talentpool.com.ng" className="text-gray-800 text-base font-medium break-words">
-                    contact@talentpool.com.ng
+                    contact@talentpoolafrica.com.ng
                   </a>
                 </div>
               </div>

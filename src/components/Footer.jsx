@@ -133,7 +133,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="text-center text-blue-300 mt-6 text-sm">Powered by Edmoss</p>
+        <a href="https://edmoss.com.ng" className="text-center text-blue-300 mt-6 text-sm">Powered by Edmoss</a>
       </div>
     </footer>
   );
