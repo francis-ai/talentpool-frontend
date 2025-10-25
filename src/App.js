@@ -38,6 +38,8 @@ import Notification from "./pages/Notification";
 
 import Subscription from "./pages/Subscription";
 
+import TutorDetails from "./pages/TutorsDetails";
+
 import AdminApp from "./AdminApp";
 
 function Layout({ children }) {
@@ -112,6 +114,7 @@ function App() {
             <Route path="/notification" element={<Notification />} />
 
             <Route path="/subscription" element={<Subscription />} />
+            <Route path="/tutors/:id" element={<TutorDetails />} />
 
             <Route path="/admin/*" element={<AdminApp />} />
           </Routes>

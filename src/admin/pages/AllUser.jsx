@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { FiEdit, FiTrash2, FiSearch, FiX, FiCheck, FiUser } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
-import { AuthContext } from "../../context/AuthContext"; // Adjust the import path as needed
+import { AuthContext } from "../../context/AuthContext";
 
 export default function UsersAdmin() {
   const [users, setUsers] = useState([]);
@@ -16,34 +16,26 @@ export default function UsersAdmin() {
 
   const { axiosInstance } = useContext(AuthContext);
 
-  // Fetch users
+  // ✅ Single fetch function
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const res = await axiosInstance.get("/users");
-      setUsers(res.data.users);
-      setFilteredUsers(res.data.users);
+      const res = await axiosInstance.get("/all-users");
+      const data = Array.isArray(res.data) ? res.data : [];
+      setUsers(data);
+      setFilteredUsers(data);
     } catch (err) {
       console.error("Error fetching users:", err);
-      //alert("Failed to fetch users");
+      setUsers([]);
+      setFilteredUsers([]);
     } finally {
       setLoading(false);
     }
   };
 
- useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await axiosInstance.get("/users");
-        setUsers(res.data);
-      } catch (err) {
-        console.error("Failed to fetch users:", err);
-      }
-    };
-    
+  useEffect(() => {
     fetchUsers();
-  }, [axiosInstance]); // ✅ no missing dependency
-
+  }, [axiosInstance]);
 
   // Search functionality
   useEffect(() => {

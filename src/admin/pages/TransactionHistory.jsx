@@ -121,7 +121,7 @@ export default function PaidList() {
   const handleRetry = () => fetchPaidUsers();
 
   return (
-    <div className="min-h-screen mt-80 bg-gray-50 py-8">
+    <div className="min-h-screen mt-0 bg-gray-50 py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="bg-white rounded-2xl shadow p-6 mt-[90px]">
           {/* Header */}

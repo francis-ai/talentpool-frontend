@@ -109,8 +109,10 @@ export default function LessonsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mt-12 mx-auto">
+    
+
+    <div className="p-6 max-w-7xl mx-auto ">
+      <div className="mt-28">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Lesson Management</h1>
@@ -136,7 +138,7 @@ export default function LessonsPage() {
             </button>
           </div>
         ) : (
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+           <div className="bg-white rounded-xl shadow overflow-hidden">
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">

@@ -22,7 +22,7 @@ export default function Sidebar({ isOpen, onClose }) {
     { icon: <FiHome size={20} />, name: "Dashboard", path: "/admin/dashboard" },
     { icon: <FiUploadCloud size={20} />, name: "Upload Course", path: "/admin/admin-create-course" },
     { icon: <FaChalkboardTeacher size={20} />, name: "Post Lessons", path: "/admin/upload-course" },
-    { icon: <FaUserGraduate size={20} />, name: "View Students", path: "/admin/all-user" },
+    { icon: <FaUserGraduate size={20} />, name: "Registered Users", path: "/admin/all-user" },
     { icon: <FaBlogger size={20} />, name: "Post Blogs", path: "/admin/create-blog" },
     { icon: <FiBookOpen size={20} />, name: "Course Action", path: "/admin/course-action" },
     { icon: <FiBookOpen size={20} />, name: "Lessons", path: "/admin/lesson-page" },

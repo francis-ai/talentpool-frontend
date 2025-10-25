@@ -6,6 +6,7 @@ import UKEducationPage from "../components/CourseList";
 import SuccessStories from "../components/SuccessStories";
 import Footer from "../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
+import TutorCard from "../components/TutorCard";
 
 // ====== Images ======
 import cooperateOne from "../assets/images/cooperateOne.jpg";
@@ -207,11 +208,12 @@ export default function HomePage() {
           </div>
         </div>
       </motion.div>
-
+      
       <Homeafeatured />
       <div className="mt-12 px-4 md:px-12">
         <UKEducationPage />
       </div>
+      <TutorCard />
       <SuccessStories />
       <Footer />
     </>
